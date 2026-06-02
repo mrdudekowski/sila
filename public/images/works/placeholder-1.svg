@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#0d0f0f"/>
+  <g stroke="rgba(241,240,236,0.12)" stroke-width="1">
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="1000"/>
+    <circle cx="400" cy="500" r="180"/>
+  </g>
+  <text x="400" y="520" text-anchor="middle" fill="rgba(241,240,236,0.25)" font-family="system-ui,sans-serif" font-size="14" letter-spacing="0.2em">PLACEHOLDER</text>
+</svg>

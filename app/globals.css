@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #080909;
+  --bg-secondary: #0d0f0f;
+  --bg-elevated: rgba(255, 255, 255, 0.035);
+  --glass-soft: rgba(255, 255, 255, 0.045);
+  --glass-strong: rgba(255, 255, 255, 0.075);
+  --line-soft: rgba(255, 255, 255, 0.1);
+  --line-medium: rgba(255, 255, 255, 0.18);
+  --text-primary: #f1f0ec;
+  --text-secondary: rgba(241, 240, 236, 0.68);
+  --text-muted: rgba(241, 240, 236, 0.42);
+  --accent-red: #a62b24;
+  --accent-red-bright: #d13a31;
+  --accent-red-soft: rgba(166, 43, 36, 0.22);
+  --accent-bronze: #8f7551;
+  --accent-bronze-soft: rgba(143, 117, 81, 0.18);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --max-content: 90rem;
+  --header-height: 4.5rem;
+  --font-satyr-fallback: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-red: var(--accent-red);
+  --color-accent-bronze: var(--accent-bronze);
+  --color-line-soft: var(--line-soft);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-satyr, var(--font-satyr-fallback));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.site-background__image {
+  object-fit: cover;
+  /* Красное свечение композиции — слева по центру */
+  object-position: 38% 50%;
+  transform: scale(1.02);
+}
+
+.site-background__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(8, 9, 9, 0.22) 0%,
+      rgba(8, 9, 9, 0.38) 42%,
+      rgba(8, 9, 9, 0.72) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 9, 9, 0.2) 0%,
+      rgba(8, 9, 9, 0.45) 55%,
+      rgba(8, 9, 9, 0.88) 100%
+    );
+}
+
+@media (max-width: 768px) {
+  .site-background__image {
+    object-position: 50% 45%;
+    transform: scale(1.06);
+  }
+
+  .site-background__veil {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 9, 9, 0.32) 0%,
+      rgba(8, 9, 9, 0.58) 45%,
+      rgba(8, 9, 9, 0.92) 100%
+    );
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-vyaz {
+  /* TODO: add local Vyaz font file — подключение в app/fonts.ts */
+  font-family: var(--font-vyaz, var(--font-display));
+  font-style: italic;
+}
+
+.glass-panel {
+  background: var(--glass-soft);
+  border: 1px solid var(--line-soft);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.glass-panel-strong {
+  background: var(--glass-strong);
+  border: 1px solid var(--line-medium);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+.glass-panel-interactive {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.glass-panel-interactive:hover {
+  border-color: var(--line-medium);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 40px var(--accent-red-soft);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.prose-width {
+  max-width: 42rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--line-medium);
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.ethno-pattern {
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(8px, -12px);
+  }
+}
+
+.animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift,
+  .animate-bounce-slow,
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+}
